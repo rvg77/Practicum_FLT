@@ -10,7 +10,7 @@ while True:
         print("OK", test_number - 1, "tests passed")
         exit()
 
-    result = subprocess.run(["python3", "Solution.py"], stdin=file, stdout=subprocess.PIPE)
+    result = subprocess.run(["python3", "solution.py"], stdin=file, stdout=subprocess.PIPE)
 
     with open("./system_tests/answer" + str(test_number) + ".txt", 'r') as ans:
         if result.stdout.decode("ascii") != ans.read():
