@@ -28,4 +28,4 @@ So, we iterate over the suffices from the longest to the shortest, choose the fi
 ## Contents
  * [Solution](https://github.com/rvg77/Practicum_FLT/blob/master/solution.py)
  * [System tests](https://github.com/rvg77/Practicum_FLT/tree/master/system_tests)
- * [System checker](https://gitthub.com/rvg77/Practicum_FLT/blob/master/system_test.py)
+ * [System checker](https://github.com/rvg77/Practicum_FLT/blob/master/system_test.py)
