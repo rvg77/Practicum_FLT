@@ -4,8 +4,8 @@ u = str(input())
 stack = list()
 
 
-def empty_dp():  # generating empty dp array
-    ans = [[0 for j in range(len(u) + 1)] for i in range(len(u) + 1)]
+def new_dp(value):  # generating empty dp array
+    ans = [[value for j in range(len(u) + 1)] for i in range(len(u) + 1)]
     return ans
 
 
@@ -16,7 +16,7 @@ def check(number):  # check error
 
 
 def dp_sum(dp1, dp2):  # union
-    dp = empty_dp()
+    dp = new_dp(0)
 
     for left in range(len(u)):
         for right in range(len(u) + 1):
@@ -27,7 +27,7 @@ def dp_sum(dp1, dp2):  # union
 
 
 def dp_multiply(dp1, dp2):  # concatenation
-    dp = empty_dp()
+    dp = new_dp(0)
 
     for left in range(len(u)):
         for right in range(len(u) + 1):
@@ -42,7 +42,7 @@ def dp_multiply(dp1, dp2):  # concatenation
 
 
 def dp_star(dp1):
-    dp = empty_dp()
+    dp = new_dp(0)
 
     for left in range(len(u)):
         for right in range(len(u), -1, -1):
@@ -63,7 +63,7 @@ def dp_star(dp1):
 
 for character in alpha:
     if 'a' <= character <= 'c':
-        dp = empty_dp()
+        dp = new_dp(0)
 
         for l in range(len(u)):
             if u[l] == character:
@@ -71,14 +71,12 @@ for character in alpha:
 
         stack.append(dp)
 
-    elif character == 0:
-        dp = empty_dp()
+    elif character == '0':
+        dp = new_dp(0)
         stack.append(dp)
 
-    elif character == 1:
-        dp = empty_dp()
-        for i in range(len(u)):
-            dp[i][i + 1] = 1
+    elif character == '1':
+        dp = new_dp(1)
         stack.append(dp)
 
     elif character == '+':
