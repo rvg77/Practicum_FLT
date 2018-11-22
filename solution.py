@@ -18,7 +18,7 @@ def check(number):  # check error
 def dp_sum(dp1, dp2):  # union
     dp = new_dp(0)
 
-    for left in range(len(u)):
+    for left in range(len(u) + 1):
         for right in range(len(u) + 1):
             if dp1[left][right] or dp2[left][right]:
                 dp[left][right] = 1
@@ -29,10 +29,8 @@ def dp_sum(dp1, dp2):  # union
 def dp_multiply(dp1, dp2):  # concatenation
     dp = new_dp(0)
 
-    for left in range(len(u)):
-        for right in range(len(u) + 1):
-            if left > right:
-                continue
+    for left in range(len(u) + 1):
+        for right in range(left, len(u) + 1):
             for middle in range(left, right + 1):
                 if dp1[left][middle] and dp2[middle][right]:
                     dp[left][right] = 1
@@ -44,17 +42,15 @@ def dp_multiply(dp1, dp2):  # concatenation
 def dp_star(dp1):
     dp = new_dp(0)
 
-    for left in range(len(u)):
-        for right in range(len(u), -1, -1):
+    for left in range(len(u) + 1):
+        for right in range(left, len(u) + 1):
             if left == right:
                 dp[left][right] = 1
 
-            for period in range(left + 1, right + 1):
-                if (right - left) % (period - left):
+            for border in range(left, right + 1):
+                if not dp[left][border]:
                     continue
-                if not dp1[left][period]:
-                    continue
-                if u[left:right] == u[left:period] * int((right - left) / (period - left)):
+                if dp1[border][right] == 1:
                     dp[left][right] = 1
                     break
 
@@ -76,7 +72,10 @@ for character in alpha:
         stack.append(dp)
 
     elif character == '1':
-        dp = new_dp(1)
+        dp = new_dp(0)
+        for i in range(len(u) + 1):
+            dp[i][i] = 1
+
         stack.append(dp)
 
     elif character == '+':
